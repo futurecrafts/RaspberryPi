@@ -34,7 +34,7 @@ closedhh = pygame.mixer.Sound('closed.wav')
 closedhh.set_volume(.65);
 clap = pygame.mixer.Sound('clap.wav')
 clap.set_volume(.65);
-cymbal = pygame.mixer.Sound('cymbal.wav')
+cymbal = pygame.mixer.Sound('loana2.wav')
 cymbal.set_volume(.65);
 
 try:
