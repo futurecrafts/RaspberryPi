@@ -1,4 +1,5 @@
 """playsound_with_pir.py: Trigger script for playing sound with PIR sensor."""
+# To increase volume=>  amixer  sset PCM,0 90%
 
 __author__ = "FutureCrafts"
 __email__ = "futurecrafts.yb@gmail.com"
