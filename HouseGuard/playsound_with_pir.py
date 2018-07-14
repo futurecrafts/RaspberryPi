@@ -43,7 +43,7 @@ try:
         if GPIO.input(PIR):
             print "Motion Detected..."
             cymbal.play()
-            time.sleep(5)
+            time.sleep(2)
         time.sleep(0.1)
         
 except:
