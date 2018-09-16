@@ -1,0 +1,8 @@
+Frame label="Rover"
+{
+	Text label="Rover" icon="firstfloor" {
+		Frame label="Rover" {
+			Webview url="http://10.1.1.11:9000" height=16
+        }
+    }//end page "Rover"
+}
