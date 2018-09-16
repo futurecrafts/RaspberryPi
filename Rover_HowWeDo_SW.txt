@@ -1,0 +1,39 @@
+Once your Raspberry Pi is ready,
+
+1. pip installation
+sudo apt-get install python-setuptools (sudo apt-get install python3-setuptools)
+sudo easy_install pip (sudo easy_install3 pip)
+
+2. flask installation
+pip install flask
+
+3. git installation & git clone repo
+sudo apt-get install git
+
+4. Enable pi cam and test
+sudo raspi-config
+raspistill -o cam.jpg
+
+5. Install Motion
+sudo apt-get install motion
+sudo modprobe bcm2835-v4l2 (‘L’, not number 1)
+
+6. Configure Motion
+sudo nano /etc/modules (add this line : bcm2835-v4l2)
+sudo nano /etc/default/motion (start_motion_daemon=yes)
+sudo nano /etc/motion/motion.conf
+daemon on
+logfile …
+stream_localhost off
+ffmpeg_output_movies off
+framerate 100
+width 640
+height 480
+webcontrol_port 8081
+and more………
+
+7. Test your motion service installation
+sudo service motion start
+=> http://localhost:8081
+
+8. reboot pi and test
