@@ -1,0 +1,34 @@
+Once you finished preparation of Raspberry Pi, we're ready to install additional packages.
+
+    1.Update and Upgrade
+sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
+
+    2.Prepare I2C communications
+sudo apt-get install python-smbus
+sudo apt-get install i2c-tools
+sudo raspi-config
+select 8 Advanced Options - A7 I2C enable - Finish
+
+    3.Check/Edit Modules and Boot configuration
+sudo nano /etc/modules
+Check or add i2c-dev below last line in file
+sudo nano /boot/config.txt
+Check or add  dtparam=i2c1=on to the end of the file
+
+    4.Install Pygame
+sudo apt-get install python-pygame
+sudo reboot
+
+    5.Check / Confirm I2C
+sudo i2cdetect  -y  1 (for Pi 2)
+sudo i2cdetect  -y  0 (for Pi 1)
+
+    6.Get Python codes from Git
+I used existing code from https://github.com/scottgarner/BeetBox. but you can extend it or do smarter way by adding extra wav files.
+It's totally up to you! :-)
+git clone https://github.com/scottgarner/BeetBox.git
+cd BeetBox
+sudo python beetbox.py
+Now, Raspberry Pi's ready to play with your touches.
