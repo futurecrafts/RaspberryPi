@@ -1,0 +1,17 @@
+Once Raspberry's prepared, we need to install pygame and git packages.
+
+1. pygame install
+sudo apt-get install python-pygame
+
+2. git install
+sudo apt-get install git
+sudo reboot
+
+3. clone the repository.
+git clone https://github.com/futurecrafts/RaspberryPi.git
+There are a few python scripts and wav files there, but we're going to use 'playsound_with_pir.py'.
+
+4. Run python script
+cd RaspberryPi/HouseGuard
+sudo python playsound_with_pir.py
+Now, our RaspberryPi is ready to detect any movement with PIR sensor! :-)
