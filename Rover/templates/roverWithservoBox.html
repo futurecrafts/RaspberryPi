@@ -17,12 +17,12 @@
 		<table align="center" class="style1">
 			<tr>
 				<td colspan="3" style="text-align: center">
-					<!--<img src="http://10.1.1.11:8081/"></img>-->
+					<img src="http://10.1.1.11:8081/"></img>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3" style="text-align: center">
-					<input id= "btnGo" type="image" src="static/img/forward.png" onmousedown="Button_onmousedown('go')" onmouseup="Button_onmouseup()" />
+					<input id= "btnGo" type="image" src="static/img/forward.png" ontouchstart="Button_onmousedown('go')" ontouchend="Button_onmouseup()" />
 				</td>
 			</tr>
 			<tr>
@@ -59,15 +59,15 @@
 				$.ajax({ url: '/stop' });
 			}
 			function SliderLRFunc(LRPos) {
-				$.ajax({ url: '/?servolr=' + LRPos + '&' });
+				$.ajax({ url: '/hor?servolr=' + LRPos });
 			}
 			function SliderDUFunc(DUPos) {
-				$.ajax({ url: '/?servodu=' + DUPos + '&' });
+				$.ajax({ url: '/ver?servodu=' + DUPos });
 			}
 			function doMouseDown(event) {
 				canvas_x = event.pageX - canvas.offsetLeft;
 				canvas_y = event.pageY - canvas.offsetTop;
-				$.ajax({ url: '/?servolr='+canvas_x+'&servodu='+canvas_y });
+				$.ajax({ url: '/pos?servolr='+canvas_x+'&servodu='+canvas_y });
 			}
 			var canvas = document.getElementById('myCanvas');
 			var ctx = canvas.getContext('2d');
