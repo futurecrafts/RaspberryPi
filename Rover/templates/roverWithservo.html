@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Rover</title>
+	<style type="text/css">
+        .style1
+        {
+            width: 50%;
+        }
+		.slider 
+		{
+			width: 50%;
+		}
+    </style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script language="javascript" type="text/javascript">
+		function Button_onmousedown(direction) {
+			$.ajax({ url: '/' + direction });
+		}
+		function Button_onmouseup() {
+			$.ajax({ url: '/stop' });
+		}
+		function servo(pos) {
+			$.ajax({ url: '/?value=' + pos + '&' });
+		}
+	</script>  
+  </head>
+	<body>
+		<h1 align="center">Rover Control</h1>
+		<table align="center" class="style1">
+			<tr>
+				<td colspan="3" style="text-align: center">
+					<!--<img src="http://10.1.1.11:8081/"></img>-->
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: center">
+					<input id= "btnGo" type="image" src="static/img/forward.png" ontouchstart="Button_onmousedown('go')" ontouchend="Button_onmouseup()" />
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align: center">
+					<input id= "btnLeft" type="image" src="static/img/left.png" ontouchstart="Button_onmousedown('left')" ontouchend="Button_onmouseup()" />
+				</td>
+				<td style="text-align: center">
+					<input id= "btnStop" type="image" src="static/img/stop.png" ontouchstart="Button_onmousedown('stop')" />
+				</td>
+				<td style="text-align: center">
+					<input id= "btnRight" type="image" src="static/img/right.png" ontouchstart="Button_onmousedown('right')" ontouchend="Button_onmouseup()" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: center">
+					<input id= "btnBack" type="image" src="static/img/backward.png" ontouchstart="Button_onmousedown('back')" ontouchend="Button_onmouseup()" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: center" title="Servo Position">
+					<input id= "ServoSlider" type="range" min="0" max="180" value="90" class="slider" onchange="servo(this.value)"/>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
