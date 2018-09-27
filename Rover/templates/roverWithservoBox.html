@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Rover</title>
+	<style type="text/css">
+        .style1
+        { width: 50%; }
+		.LR
+		{ width: 300px; height: 150px; -webkit-appearance: slider-horizontal; writing-mode: bt-lr; }
+		.DU
+		{ width: 300px; height: 250px; -webkit-appearance: slider-vertical; writing-mode: bt-lr; }
+    </style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>  
+  </head>
+	<body>
+		<h1 align="center">Rover Control</h1>
+		<table align="center" class="style1">
+			<tr>
+				<td colspan="3" style="text-align: center">
+					<!--<img src="http://10.1.1.11:8081/"></img>-->
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: center">
+					<input id= "btnGo" type="image" src="static/img/forward.png" onmousedown="Button_onmousedown('go')" onmouseup="Button_onmouseup()" />
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align: center">
+					<input id= "btnLeft" type="image" src="static/img/left.png" ontouchstart="Button_onmousedown('left')" ontouchend="Button_onmouseup()" />
+				</td>
+				<td style="text-align: center">
+					<input id= "btnStop" type="image" src="static/img/stop.png" ontouchstart="Button_onmousedown('stop')" />
+				</td>
+				<td style="text-align: center">
+					<input id= "btnRight" type="image" src="static/img/right.png" ontouchstart="Button_onmousedown('right')" ontouchend="Button_onmouseup()" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: center">
+					<input id= "btnBack" type="image" src="static/img/backward.png" ontouchstart="Button_onmousedown('back')" ontouchend="Button_onmouseup()" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: center">
+					<input id="SliderLR" class="LR" type="range" name="servolr" orient="horizontal" min="0" max="300" value="150" onchange="SliderLRFunc(this.value)" />
+					<input id="SliderDU" class="DU" type="range" name="servodu" orient="vertical" min="0" max="300" value="150" onchange="SliderDUFunc(this.value)" />
+				</td>
+			</tr>
+		</table>
+		<form action='' method='get' align="center">
+			<canvas id="myCanvas" width="300px" height="300px" style="background: #0488FB; border:2px solid #d3d3d3;"></canvas>
+		</form>
+		<script language="javascript" type="text/javascript">
+			function Button_onmousedown(direction) {
+				$.ajax({ url: '/' + direction });
+			}
+			function Button_onmouseup() {
+				$.ajax({ url: '/stop' });
+			}
+			function SliderLRFunc(LRPos) {
+				$.ajax({ url: '/?servolr=' + LRPos + '&' });
+			}
+			function SliderDUFunc(DUPos) {
+				$.ajax({ url: '/?servodu=' + DUPos + '&' });
+			}
+			function doMouseDown(event) {
+				canvas_x = event.pageX - canvas.offsetLeft;
+				canvas_y = event.pageY - canvas.offsetTop;
+				$.ajax({ url: '/?servolr='+canvas_x+'&servodu='+canvas_y });
+			}
+			var canvas = document.getElementById('myCanvas');
+			var ctx = canvas.getContext('2d');
+			ctx.font = '30px Comic Sans MS';
+			ctx.fillStyle = 'blue';
+			ctx.textAlign = 'center';
+			ctx.fillText('Touch!', canvas.width/2, canvas.height/2); 
+			canvas.addEventListener('mousedown', doMouseDown, false);
+			document.getElementById('SliderLR').value = getQueryParams(document.location.search).servolr;
+			document.getElementById('SliderDU').value = getQueryParams(document.location.search).servodu;
+			//function SliderLRFunc(val) {window.location = '?servolr='+val+'&servodu='+document.getElementById('SliderDU').value;}
+			//function SliderDUFunc(val) {window.location = '?servolr='+document.getElementById('SliderLR').value+'&servodu='+val;}
+			function getQueryParams(qs) {
+			qs = qs.split('+').join(' ');
+			var params = {},
+				tokens,
+				re = /[?&]?([^=]+)=([^&]*)/g;
+			while (tokens = re.exec(qs)) {
+				params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);}
+			return params;}
+			//function doMouseDown(event) {
+			//	canvas_x = event.pageX - canvas.offsetLeft;
+			//	canvas_y = event.pageY - canvas.offsetTop;
+			//	window.location = '?servolr='+canvas_x+'&servodu='+canvas_y;}
+		</script>
+	</body>
+</html>
