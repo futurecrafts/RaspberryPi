@@ -62,7 +62,7 @@ def move_pet(x,y,area):
 
 def init():
     gpio.setmode(gpio.BCM)
-	gpio.setwarnings(False)
+    gpio.setwarnings(False)
     gpio.setup(17, gpio.OUT)
     gpio.setup(22, gpio.OUT)
     gpio.setup(23, gpio.OUT)
@@ -102,17 +102,17 @@ def turn_right(tf):
     clean_up()
 
 def pivot_left(tf):
-    gpio.output(17, gpio.LOW)
+    gpio.output(17, gpio.HIGH)
     gpio.output(22, gpio.LOW)
-    gpio.output(23, gpio.HIGH)
-    gpio.output(24, gpio.LOW)
+    gpio.output(23, gpio.LOW)
+    gpio.output(24, gpio.HIGH)
     time.sleep(tf)
     clean_up()
 
 def pivot_right(tf):
-    gpio.output(17, gpio.HIGH)
-    gpio.output(22, gpio.LOW)
-    gpio.output(23, gpio.LOW)
+    gpio.output(17, gpio.LOW)
+    gpio.output(22, gpio.HIGH)
+    gpio.output(23, gpio.HIGH)
     gpio.output(24, gpio.LOW)
     time.sleep(tf)
     clean_up()
@@ -128,7 +128,7 @@ def main():
     while True:
         getch()
     cv2.destroyAllWindows()
-	gpio.cleanup()
+    gpio.cleanup()
 
 
 
