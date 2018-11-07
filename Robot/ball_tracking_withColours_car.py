@@ -70,8 +70,9 @@ while True:
     M = cv2.moments(c)
     print 'distance: '
     print M["m00"]
-	cX = int(M["m10"] / M["m00"])
-	cY = int(M["m01"] / M["m00"])
+    Dist = M["m00"]
+    cX = int(M["m10"] / M["m00"])
+    cY = int(M["m01"] / M["m00"])
     center = (cX, cY)
     print 'center: '
     print center
@@ -82,7 +83,7 @@ while True:
     # draw the circle and centroid on the frame, then update the list of tracked points
       cv2.circle(frame, (int(x), int(y)), int(radius),(0, 255, 255), 2)
       cv2.circle(frame, center, 5, (0, 0, 255), -1)
-	  move_car(round(cX), round(cY), round(radius))
+	  move_car(round(cX), round(cY), round(Dist))
 	  time.sleep(0.15)
       print 'circle drawing and passing to car now'
 
