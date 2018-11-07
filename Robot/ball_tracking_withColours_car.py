@@ -31,19 +31,21 @@ else:
         vs.set(4, 600)
 time.sleep(2.0)
 
-def move_car(x, y, area):
-  if x > 310:
-    os.system("python motorcontrol2.py pright " + str((x-300)/(300*12)))
-	print "car pivot right"
-  elif x < 290:
-    os.system("python motorcontrol2.py pleft " + str((300-x)/(300*12)))
-	print "car pivot left"
-  elif ((290 <= x <= 310) and area<30000):
-    os.system("python motorcontrol2.py go " + str(0.05))
-	print "car go"
-  elif ((290 <= x <= 310) and area>30000):
-    os.system("python motorcontrol2.py back " + str(0.05))
-	print "car back"
+def move_car(x, y, radius):
+  if x > 400:
+    period = float((x-300)/(300*5))
+    os.system("python motorcontrol2.py pright " + str(period))
+    print period
+  elif x < 200:
+    period = float((300-x)/(300*5))
+    os.system("python motorcontrol2.py pleft " + str(period))
+    print period
+  elif ((200 <= x <= 400) and radius<80):
+    os.system("python motorcontrol2.py go " + str(0.3))
+    print "car go"
+  elif ((200 <= x <= 400) and radius>100):
+    os.system("python motorcontrol2.py back " + str(0.3))
+    print "car back"
 
 while True:
   frame = vs.read()
@@ -61,10 +63,10 @@ while True:
   cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
   cnts = cnts[0] if imutils.is_cv2() else cnts[1]
   center = None
-  print 'cnts got: '
-  print len(cnts)
+  #print 'cnts got: '
+  #print len(cnts)
   if len(cnts) > 0:
-  # find the largest contour in the mask, then use it to compute the minimum enclosing circle and centroid
+  # find the largest contour in the mask, then use it to compute the minimum encl$
     c = max(cnts, key=cv2.contourArea)
     ((x, y), radius) = cv2.minEnclosingCircle(c)
     M = cv2.moments(c)
@@ -76,29 +78,30 @@ while True:
     center = (cX, cY)
     print 'center: '
     print center
-	# only proceed if the radius meets a minimum size
+        # only proceed if the radius meets a minimum size
     print 'radius: '
     print radius
     if radius > 10:
-    # draw the circle and centroid on the frame, then update the list of tracked points
+    # draw the circle and centroid on the frame, then update the list of tracked $
       cv2.circle(frame, (int(x), int(y)), int(radius),(0, 255, 255), 2)
       cv2.circle(frame, center, 5, (0, 0, 255), -1)
-	  move_car(round(cX), round(cY), round(Dist))
-	  time.sleep(0.15)
-      print 'circle drawing and passing to car now'
+      move_car(round(cX), round(cY), round(radius))
+      #time.sleep(0.3)
+      #print 'circle drawing and passing to car now'
 
+  time.sleep(1)
   # update the points queue
-  pts.appendleft(center)
+  #pts.appendleft(center)
 
   # loop over the set of tracked points
-  for i in range(1, len(pts)):
+  #for i in range(1, len(pts)):
   # if either of the tracked points are None, ignore them
-    if pts[i - 1] is None or pts[i] is None:
-      continue
+  #  if pts[i - 1] is None or pts[i] is None:
+   #   continue
 
     # otherwise, compute the thickness of the line and draw the connecting lines
-    thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
-	cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
+    #thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
+	#cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
 
   # show the frame to our screen
   #cv2.imshow("Frame", frame)
