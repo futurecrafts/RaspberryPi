@@ -13,6 +13,7 @@ def setServoAngle(servo1, angle1, servo2, angle2):
         dutyCycle2 = angle2 / 18. + 2.
         pwm1.ChangeDutyCycle(dutyCycle1)
         pwm2.ChangeDutyCycle(dutyCycle2)
+        print dutyCycle1 + " and " + dutyCycle2
         sleep(0.5)
         pwm1.ChangeDutyCycle(0)
         pwm2.ChangeDutyCycle(0)
