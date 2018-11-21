@@ -31,33 +31,58 @@ def carmove(x, y):
   motorSpeedB = 0
   m1.start(motorSpeedA)
   m2.start(motorSpeedB)
-        
+  # Y-axis used for forward and backward control      
   if y < 90:
-    forward()
-    print "forward!"
-    motorSpeedA = valmap(y, 90, 0, 0, 100)
-    motorSpeedB = valmap(y, 90, 0, 0, 100)
+        forward()
+        print "Forward!"
+        motorSpeedA = valmap(y, 90, 0, 0, 100)
+        motorSpeedB = valmap(y, 90, 0, 0, 100)
   elif y > 110:
-    backward()
-    print "backward!"
-    motorSpeedA = valmap(y, 110, 200, 0, 100)
-    motorSpeedB = valmap(y, 110, 200, 0, 100)
-  elif towhere == 'left':
-                        GPIO.output(17, GPIO.LOW)
-                        GPIO.output(22, GPIO.LOW)
-                        GPIO.output(23, GPIO.HIGH)
-                        GPIO.output(24, GPIO.LOW)
-                        print "Rover Left"
-        elif towhere == 'right':
-                        GPIO.output(17, GPIO.HIGH)
-                        GPIO.output(22, GPIO.LOW)
-                        GPIO.output(23, GPIO.LOW)
-                        GPIO.output(24, GPIO.LOW)
-                        print "Rover Right"
-        elif towhere == 'stop':
-                        clean()
-                        print "Rover Stop"
-						
+        backward()
+        print "Backward!"
+        motorSpeedA = valmap(y, 110, 200, 0, 100)
+        motorSpeedB = valmap(y, 110, 200, 0, 100)
+  else:
+	print "Stay!"
+	motorSpeedA = 0
+	motorSpeedB = 0
+  
+  # X-axis used for left and right control
+  if x < 90:
+	print "Left!"
+	mapped = valmap(x, 90, 0, 0, 100)
+	# Move to left - decrease left motor speed, increase right motor speed
+	motorSpeedA = motorSpeedA - mapped
+	motorSpeedB = motorSpeedB + mapped
+	if motorSpeedA < 0:
+		motorSpeedA = 0
+	if motorSpeedB > 100:
+		motorSpeedB = 100
+  elif x > 110:
+	print "Right!"
+	mapped = valmap(x, 110, 200, 0, 100)
+	# Move right - decrease right motor speed, increase left motor speed
+	motorSpeedA = motorSpeedA + mapped
+	motorSpeedB = motorSpeedB - mapped
+	if motorSpeedA > 100:
+		motorSpeedA = 100
+	if motorSpeedB < 0:
+		motorSpeedB = 0
+		
+  # Prevent buzzing at low speeds (Adjust according to your motors. My motors couldn't start moving if PWM value was below value of 70)
+  #if motorSpeedA < 10:
+	#motorSpeedA = 0
+  #if motorSpeedB < 10:
+        #motorSpeedB = 0;
+	
+  m1.ChangeDutyCycle(motorSpeedA)
+  m2.ChangeDutyCycle(motorSpeedB)
+  print motorSpeedA + " and " + motorSpeedB
+  sleep(0.5)
+  m1.stop()
+  m2.stop()
+	
+	
 if __name__ == '__main__':
         import sys
         x = sys.argv[1]
