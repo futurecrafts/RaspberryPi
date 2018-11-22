@@ -9,6 +9,7 @@ pip install flask
 
 3. git installation & git clone repo
 sudo apt-get install git
+git clone https://github.com/futurecrafts/RaspberryPi.git
 
 4. Enable pi cam and test
 sudo raspi-config
@@ -34,6 +35,6 @@ and more………
 
 7. Test your motion service installation
 sudo service motion start
-=> http://localhost:8081
+Open browser and go => http://localhost:8081
 
 8. reboot pi and test
