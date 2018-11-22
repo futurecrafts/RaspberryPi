@@ -34,7 +34,7 @@ while True:
   frame = frame[1] if args.get("video", False) else frame
   if frame is None:
     break
-  #frame = imutils.resize(frame, width=600)
+  frame = imutils.resize(frame, width=600) #frame = imutils.resize(frame, width=600)?????why
   blurred = cv2.GaussianBlur(frame, (11, 11), 0)
   hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
   
