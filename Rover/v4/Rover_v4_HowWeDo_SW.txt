@@ -1,5 +1,8 @@
 Once your Raspberry Pi is ready,
 
+0. update and upgrade
+sudo apt-get update && sudo apt-get upgrade
+
 1. pip installation
 sudo apt-get install python-setuptools (sudo apt-get install python3-setuptools)
 sudo easy_install pip (sudo easy_install3 pip)
