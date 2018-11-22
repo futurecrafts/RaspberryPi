@@ -16,21 +16,21 @@ raspistill -o cam.jpg
 
 5. Install Motion
 sudo apt-get install motion
-sudo modprobe bcm2835-v4l2 (‘L’, not number 1)
+sudo modprobe bcm2835-v4l2 (â€˜Lâ€™, not number 1)
 
 6. Configure Motion
 sudo nano /etc/modules (add this line : bcm2835-v4l2)
 sudo nano /etc/default/motion (start_motion_daemon=yes)
 sudo nano /etc/motion/motion.conf
 daemon on
-logfile …
+logfile â€¦
 stream_localhost off
 ffmpeg_output_movies off
 framerate 100
 width 640
 height 480
 webcontrol_port 8081
-and more………
+and moreâ€¦â€¦â€¦
 
 7. Test your motion service installation
 sudo service motion start
