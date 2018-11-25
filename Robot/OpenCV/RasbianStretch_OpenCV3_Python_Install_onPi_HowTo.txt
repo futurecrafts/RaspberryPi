@@ -1,0 +1,16 @@
+=> https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/
+
+After following that URL,
+1. Enable Camera
+2. Reboot
+3. Source ~/.profile
+4. workon cv
+5. pip3 install imutils
+6. pip3 install "picamera[array]"
+7. sudo modprobe bcm2835-4l2
+
+For increasing FPS, 
+https://www.pyimagesearch.com/2016/01/04/unifying-picamera-and-cv2-videocapture-into-a-single-class-with-opencv/
+
+For improving speed of opencv,
+https://www.pyimagesearch.com/2017/10/09/optimizing-opencv-on-the-raspberry-pi/
