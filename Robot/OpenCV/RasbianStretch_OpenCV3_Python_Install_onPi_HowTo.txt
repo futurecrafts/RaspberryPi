@@ -7,7 +7,7 @@ After following that URL,
 4. workon cv
 5. pip3 install imutils
 6. pip3 install "picamera[array]"
-7. sudo modprobe bcm2835-4l2
+7. sudo modprobe bcm2835-v4l2
 
 For increasing FPS, 
 https://www.pyimagesearch.com/2016/01/04/unifying-picamera-and-cv2-videocapture-into-a-single-class-with-opencv/
