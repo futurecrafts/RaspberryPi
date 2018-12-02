@@ -29,9 +29,9 @@ def reset():
 def move(direction):
                 # Choose the direction of the request
                 if direction == 'go':
-                        os.system("python motorcontrol.py go")
+                        os.system("python motorcontrol_old.py go")
                         print "Rover Go"
-				        elif direction == 'back':
+		elif direction == 'back':
                         os.system("python motorcontrol_old.py back")
                         print "Rover Back"
                 elif direction == 'left':
