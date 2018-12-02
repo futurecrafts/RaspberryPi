@@ -32,16 +32,16 @@ def move(direction):
                         os.system("python motorcontrol.py go")
                         print "Rover Go"
 				        elif direction == 'back':
-                        os.system("python motorcontrol.py back")
+                        os.system("python motorcontrol_old.py back")
                         print "Rover Back"
                 elif direction == 'left':
-                        os.system("python motorcontrol.py left")
+                        os.system("python motorcontrol_old.py left")
                         print "Rover Left"
                 elif direction == 'right':
-                        os.system("python motorcontrol.py right")
+                        os.system("python motorcontrol_old.py right")
                         print "Rover Right"
                 elif direction == 'stop':
-                        os.system("python motorcontrol.py stop")
+                        os.system("python motorcontrol_old.py stop")
                         print "Rover Stop"
 
                 return direction
