@@ -14,6 +14,6 @@ pip install flask
 sudo apt-get install git
 git clone https://github.com/futurecrafts/RaspberryPi.git
 
-5. reboot pi and test
-
-6. https://github.com/futurecrafts/RaspberryPi/blob/master/Rover/RoverV1.py
+5. Run script and test
+cd RaspberryPi/Rover
+python RoverV1.py
