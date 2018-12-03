@@ -31,7 +31,7 @@ def carpos():
         verValue = request.args.get('cardu', None)
         print "carpos received"
         print horValue + " and " + verValue
-	      os.system("python motorcontrol.py " + horValue + " " + verValue)
+	os.system("python motorcontrol.py " + horValue + " " + verValue)
         return "OK"
 
 # Clean everything up when the app exits
