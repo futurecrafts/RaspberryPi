@@ -10,7 +10,7 @@ def clean():
   GPIO.output(26, GPIO.LOW)
         
 def valmap(x, in_min, in_max, out_min, out_max):
-  return int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
+  return int((int(x)-int(in_min)) * (int(out_max)-int(out_min)) / (int(in_max)-int(in_min)) + int(out_min))
     
 def forward():
   GPIO.output(12, GPIO.HIGH)
@@ -24,13 +24,17 @@ def backward():
   GPIO.output(19, GPIO.LOW)
   GPIO.output(26, GPIO.HIGH)
 
-def carmove(x, y):
+def carmove(x_str, y_str):
+  x = int(x_str)
+  y = int(y_str)
   m1 = GPIO.PWM(16, 100)
   m2 = GPIO.PWM(20, 100)
   motorSpeedA = 0
   motorSpeedB = 0
   m1.start(motorSpeedA)
   m2.start(motorSpeedB)
+  print x
+  print y
   # Y-axis used for forward and backward control      
   if y < 90:
         forward()
@@ -77,7 +81,7 @@ def carmove(x, y):
 	
   m1.ChangeDutyCycle(motorSpeedA)
   m2.ChangeDutyCycle(motorSpeedB)
-  print motorSpeedA + " and " + motorSpeedB
+  print str(motorSpeedA) + " and " + str(motorSpeedB)
   sleep(0.5)
   m1.stop()
   m2.stop()
