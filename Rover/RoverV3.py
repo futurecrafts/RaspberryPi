@@ -27,7 +27,8 @@ def reset():
 # receive servo value
 @app.route("/servopos")
 def servopos():
-        horValue = request.args.get('servolr', None)
+	temp_horValue = request.args.get('servolr', None)
+        horValue = str(180 - int(temp_horValue))
         verValue = request.args.get('servodu', None)
         print "servopos received"
         print horValue + " and " + verValue
