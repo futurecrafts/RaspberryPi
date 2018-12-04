@@ -31,7 +31,7 @@ def servopos():
         verValue = request.args.get('servodu', None)
         print "servopos received"
         print horValue + " and " + verValue
-	    os.system("python servocontrol.py 17 " + horValue + " 18 " + verValue)
+	os.system("python servocontrol.py 17 " + horValue + " 18 " + verValue)
         return "OK"
 
 # receive direction from the button press on roverv1.html
