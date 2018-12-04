@@ -14,7 +14,7 @@ def init():
 def index():
         init()
         try:
-          return render_template('roverv1.html')
+          return render_template('roverv3.html')
         except Exception as e:
           print e
           pass
