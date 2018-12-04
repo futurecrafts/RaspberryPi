@@ -15,7 +15,7 @@ sudo apt-get install git
 git clone https://github.com/futurecrafts/RaspberryPi.git
 
 5. Enable pi cam and test
-sudo raspi-config
+sudo raspi-config (and enable camera and reboot pi)
 raspistill -o cam.jpg
 
 6. Install Motion
@@ -40,4 +40,6 @@ and more………
 sudo service motion start
 Open browser and go => http://localhost:8081
 
-9. reboot pi and test
+9. Run script and test
+cd RaspberryPi/Rover
+python RoverV3.py
