@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Test</title>
+	<style type="text/css">
+        .style1
+        { width: 100%; }
+    </style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>  
+  </head>
+	<body>
+		<h1 align="center">Rover Control</h1>
+		<form action='' method='get' align="center">
+			<canvas id="myCarCanvas" width="200px" height="200px" style="background: #0488FB; border:0px solid #d3d3d3;"></canvas>
+		</form>
+    <form action='' method='get' align="center">
+			<canvas id="myServoCanvas" width="180px" height="180px" style="background: #0488FB; border:0px solid #d3d3d3;"></canvas>
+		</form>
+		<script language="javascript" type="text/javascript">
+			window.oncontextmenu = function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			return false;
+			};
+			function doCarMouseDown(event) {
+				canvas_x = event.pageX - canvas_Car.offsetLeft;
+				canvas_y = event.pageY - canvas_Car.offsetTop;
+				$.ajax({ url: '/carpos?carlr='+canvas_x+'&cardu='+canvas_y });
+			}
+      function doServoMouseDown(event) {
+				canvas_x = event.pageX - canvas_Servo.offsetLeft;
+				canvas_y = event.pageY - canvas_Servo.offsetTop;
+				$.ajax({ url: '/servopos?servolr='+canvas_x+'&servodu='+canvas_y });
+			}
+      var canvas_Servo = document.getElementById('myServoCanvas');
+			var ctx = canvas_Servo.getContext('2d');
+			ctx.font = '15px Comic Sans MS';
+			ctx.fillStyle = 'blue';
+			ctx.textAlign = 'center';
+			ctx.fillText('Servo Touch!', canvas_Servo.width/2, canvas_Servo.height/2); 
+			canvas_Servo.addEventListener('mousedown', doServoMouseDown, false);
+			var canvas_Car = document.getElementById('myCarCanvas');
+			var ctx2 = canvas_Car.getContext('2d');
+			ctx2.font = '15px Comic Sans MS';
+			ctx2.fillStyle = 'blue';
+			ctx2.textAlign = 'center';
+			ctx2.fillText('Car Touch!', canvas_Car.width/2, canvas_Car.height/2); 
+			canvas_Car.addEventListener('mousedown', doCarMouseDown, false);
+		</script>
+	</body>
+</html>
