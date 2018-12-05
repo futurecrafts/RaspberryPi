@@ -31,18 +31,18 @@ def carpos():
         verValue = request.args.get('cardu', None)
         print "carpos received"
         print horValue + " and " + verValue
-	      os.system("python motorcontrol.py " + horValue + " " + verValue)
+	os.system("python motorcontrol.py " + horValue + " " + verValue)
         return "OK"
         
 # receive servo value
 @app.route("/servopos")
 def servopos():
-	      temp_horValue = request.args.get('servolr', None)
+	temp_horValue = request.args.get('servolr', None)
         horValue = str(180 - int(temp_horValue))
         verValue = request.args.get('servodu', None)
         print "servopos received"
         print horValue + " and " + verValue
-	      os.system("python servocontrol.py 17 " + horValue + " 18 " + verValue)
+	os.system("python servocontrol.py 17 " + horValue + " 18 " + verValue)
         return "OK"
 
 # Clean everything up when the app exits
