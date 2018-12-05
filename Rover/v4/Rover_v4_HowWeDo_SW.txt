@@ -40,4 +40,8 @@ and more………
 sudo service motion start
 Open browser and go => http://localhost:8081
 
-9. reboot pi and test
+9. Run script and test
+
+cd RaspberryPi/Rover
+
+python RoverV4.py
